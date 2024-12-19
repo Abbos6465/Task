@@ -2,7 +2,7 @@
     setup
     lang="ts"
 >
-import { computed, h, inject, ref, Ref, shallowRef, useSlots, useTemplateRef, watch } from "vue";
+import { computed, inject, ref, Ref, useSlots, useTemplateRef, watch } from "vue";
 import {
   AppDatePickerPropsType,
   AppDatePickerValueType
@@ -17,7 +17,7 @@ const model = defineModel<AppDatePickerValueType>();
 const props = withDefaults(defineProps<AppDatePickerPropsType>(), {
   labelPosition: "top",
   format: "DD.MM.YYYY",
-  valueFormat: "YYYY-MM-DD",
+  valueFormat: "DD.MM.YYYY",
   type: "date",
   editable: true,
   labelClass: "",

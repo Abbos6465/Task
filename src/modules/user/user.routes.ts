@@ -20,6 +20,7 @@ export default [
                 name: "user.show",
                 component: () => import("@/modules/user/pages/UserShow.vue"),
                 meta: {
+                    breadCrumbItemTitle: "Просмотр",
                     title: "Просмотреть пользователь"
                 }
             },

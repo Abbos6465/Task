@@ -64,3 +64,50 @@ button[disabled] {
     @apply size-4;
   }
 }
+
+.nested {
+  &-enter-active,
+  &-leave-active,
+  &-reverse-enter-active,
+  &-reverse-leave-active {
+    transition: all 0.2s ease;
+  }
+
+  &-leave-active, &-reverse-leave-active {
+    transition-delay: 0.01s;
+  }
+
+  &-enter-from,
+  &-leave-to, {
+    position: absolute;
+    overflow-x: hidden;
+    top: 0;
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  &-reverse-enter-from, &-reverse-leave-to {
+    position: absolute;
+    overflow-x: hidden;
+    top: 0;
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  &-enter-active .inner,
+  &-leave-active .inner {
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+
+  &-enter-active .inner {
+    transition-delay: 0.25s;
+  }
+
+  &-enter-from .inner,
+  &-leave-to .inner {
+    transform: translateX(30px);
+    overflow: hidden;
+    opacity: 0.0001;
+  }
+}

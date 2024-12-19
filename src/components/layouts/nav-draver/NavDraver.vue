@@ -157,10 +157,10 @@ watch(collapse, (newValue) => {
   }
 
   .el-menu--collapse &__item {
-    @apply justify-center;
+    @apply justify-center px-2 py-1.5;
 
     svg {
-      @apply translate-x-1/2;
+      @apply translate-x-[30%];
     }
   }
 }

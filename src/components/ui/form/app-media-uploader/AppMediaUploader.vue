@@ -1,24 +1,24 @@
 <script
-  setup
-  lang="ts"
+    setup
+    lang="ts"
 >
 import {
   AppMediaUploaderPropsType,
-  AppMediaUploaderValueType,
+  AppMediaUploaderValueType
 } from "@/components/ui/form/app-media-uploader/app-media-uploader.type";
 import { computed, ref, useTemplateRef, watch } from "vue";
 import { generateRandomID } from "@/utils/helper";
-import UploadIcon from "@/assets/images/icons/upload.svg";
+import AppIcon from "@/components/ui/app-icon/AppIcon.vue";
 
 const id = generateRandomID();
 
 const model = defineModel<AppMediaUploaderValueType>({
-  default: "",
+  default: ""
 });
 
 const props = withDefaults(defineProps<AppMediaUploaderPropsType>(), {
   height: 224,
-  loading: false,
+  loading: false
 });
 
 const computedHeight = computed(() => {
@@ -53,11 +53,11 @@ const readImage = async () => {
     const reader = new FileReader();
 
     mediaFile.value = await new Promise<string | ArrayBuffer | null>(
-      (resolve, reject) => {
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = () => reject(reader.error);
-        reader.readAsDataURL(model.value as File);
-      },
+        (resolve, reject) => {
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => reject(reader.error);
+          reader.readAsDataURL(model.value as File);
+        }
     );
   }
 };
@@ -72,16 +72,16 @@ const clear = () => {
 };
 
 watch(
-  () => props.value,
-  newValue => {
-    if (newValue && !model.value) {
-      mediaFile.value = newValue;
-    }
-  },
-  { immediate: true },
+    () => props.value,
+    newValue => {
+      if (newValue && !model.value) {
+        mediaFile.value = newValue;
+      }
+    },
+    { immediate: true }
 );
 
-watch(model, readImage, {immediate: true});
+watch(model, readImage, { immediate: true });
 
 const setDefaultImage = (event: any) => {
   event.target.src = "https://www.landuse-ca.org/wp-content/uploads/2019/04/no-photo-available.png";
@@ -89,59 +89,56 @@ const setDefaultImage = (event: any) => {
 </script>
 
 <template>
-  <div class="app-media-uploader">
+  <div class="app-media-uploader w-full">
     <input
-      :id
-      ref="input-file"
-      type="file"
-      accept="image/png, image/jpeg"
-      class="app-media-uploader__input absolute left-0 top-0 opacity-0 invisible"
-      @input="uploadImage"
+        :id
+        ref="input-file"
+        type="file"
+        accept="image/png, image/jpeg"
+        class="app-media-uploader__input absolute left-0 top-0 opacity-0 invisible"
+        @input="uploadImage"
     />
     <label
-      :for="id"
-      :class="[
+        :for="id"
+        :class="[
         'bg-white-blue rounded-2xl border-dashed border border-gray-300 overflow-y-hidden flex items-center justify-center',
         { 'cursor-pointer': !mediaFile },
       ]"
-      :style="{ height: computedHeight }"
+        :style="{ height: computedHeight }"
     >
       <ElProgress
-        v-if="loading"
-        type="circle"
-        :stroke-width="5"
-        :percentage="30"
-        status="success"
-        :show-text="false"
-        :indeterminate="true"
-        :duration="1"
+          v-if="loading"
+          type="circle"
+          :stroke-width="5"
+          :percentage="30"
+          status="success"
+          :show-text="false"
+          :indeterminate="true"
+          :duration="1"
       />
       <span
-        v-if="mediaFile"
-        class="relative cursor-pointer z-1 group w-full"
+          v-if="mediaFile"
+          class="relative cursor-pointer z-1 group w-full"
       >
         <img
-          @error="setDefaultImage"
-          :src="mediaFile as string"
-          alt="file img"
-          :class="['w-full rounded-2xl object-contain h-full p-2']"
-          :style="{ 'max-height': computedHeight }"
+            @error="setDefaultImage"
+            :src="mediaFile as string"
+            alt="file img"
+            :class="['w-full rounded-2xl object-contain h-full p-2']"
+            :style="{ 'max-height': computedHeight }"
         />
         <button
-          class="cursor-pointer pointer-events-none absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            class="cursor-pointer pointer-events-none absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         >
           Изменить фото
         </button>
       </span>
       <span
-        v-else-if="!mediaFile && !loading"
-        class="flex flex-col items-center justify-center p-6"
+          v-else-if="!mediaFile && !loading"
+          class="flex flex-col items-center justify-center p-6"
       >
         <span class="bg-white rounded-2xl p-4">
-          <svg
-            :data-src="UploadIcon"
-            class="size-6"
-          />
+         <AppIcon icon="upload"/>
         </span>
         <span class="text-gray-700 text-sm mt-6">
           Перетащите фотографию для загрузки
@@ -150,7 +147,7 @@ const setDefaultImage = (event: any) => {
           Максимальный размер фотографии 10 МБ
         </span>
         <button
-          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-6 pointer-events-none"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-6 pointer-events-none"
         >
           Выбрать фото
         </button>

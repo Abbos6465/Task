@@ -21,7 +21,8 @@ export default {
                 "light-periwinkle": "var(--light-periwinkle)",
                 "slate-gray": "var(--slate-gray)",
                 "cool-gray": "var(--cool-gray)",
-                "pastel-blue": "var(--pastel-blue)"
+                "pastel-blue": "var(--pastel-blue)",
+                "white-blue": "var(--white-blue)"
             },
             borderRadius: {
                 xl: "calc(var(--radius) + 4px)",
