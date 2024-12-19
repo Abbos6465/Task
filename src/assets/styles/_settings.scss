@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  --el-component-size: 40px;
+  --el-component-size-large: 48px;
+  --el-component-size-small: 32px;
+  --el-border-radius-base: 8px;
+  --el-border-color: #eeeeef;
+  --el-color-danger: #e12121;
+  --el-popover-border-radius: 8px;
+  --el-border-color-light: #e2e6f3;
+  --el-color-success: #28c76f;
+  --el-border-color-lighter: #e2e6f3;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+.arrow-top {
+  @apply -rotate-90;
+}
+
+.arrow-bottom {
+  @apply rotate-90;
+}
+
+.arrow-left {
+  @apply rotate-180;
+}
+
+.title {
+  @apply text-dark font-semibold text-[32px];
+}
+
+.actions {
+  @apply inline-flex items-center gap-x-2;
+}
+
+.action-btn {
+  @apply size-8 rounded-lg bg-light-periwinkle flex items-center justify-center;
+
+  &__icon {
+    @apply size-4;
+  }
+}
