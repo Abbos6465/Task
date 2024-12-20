@@ -41,7 +41,7 @@ const validation = reactive<ValidationType>({
     appForm.value.resetFields();
   },
 
-  clear: async function (): void {
+  clear: async function () {
     this.resetForm();
     this.clearValidate();
   }

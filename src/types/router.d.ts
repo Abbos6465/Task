@@ -1,3 +1,5 @@
+export type LayoutType = "MainLayout" | "AuthLayout";
+
 declare module "vue-router" {
     interface RouteMeta {
         title?: string,

@@ -1,30 +1,31 @@
 <script
-		setup
-		lang="ts"
+    setup
+    lang="ts"
 >
 
-import {useRoute} from "vue-router";
-import {computed} from "vue";
+import { useRoute } from "vue-router";
+import { computed } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
+import { LayoutType } from "@/types/router";
 
 const route = useRoute();
 
-const layout = computed(() => route.meta.layout);
+const layout = computed(() => route.meta.layout as LayoutType | undefined);
 
 const layouts = {
-    MainLayout,
-    AuthLayout
-}
+  MainLayout,
+  AuthLayout
+};
 
 </script>
 
 <template>
-    <component
-		    v-if="layout"
-		    :is="layouts[layout]"
-		    :key="layout"
-    >
+  <component
+      v-if="layout"
+      :is="layouts[layout]"
+      :key="layout"
+  >
     <RouterView/>
   </component>
 
